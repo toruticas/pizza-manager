@@ -1,4 +1,4 @@
-import React from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 
@@ -12,9 +12,11 @@ function App() {
         dedupingInterval: 0,
       }}
     >
-      <Router>
-        <Pages />
-      </Router>
+      <Suspense fallback={<p>loading...</p>}>
+        <Router>
+          <Pages />
+        </Router>
+      </Suspense>
     </SWRConfig>
   );
 }

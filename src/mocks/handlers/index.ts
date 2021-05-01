@@ -1,5 +1,5 @@
-import { pizzaSummary } from './pizzaSummary';
+import { dashboard } from './dashboard';
 
-const handlers = [pizzaSummary];
+const handlers = [dashboard];
 
 export { handlers };
