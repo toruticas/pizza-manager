@@ -1,5 +1,6 @@
 import { dashboard } from './dashboard';
+import { orders } from './orders';
 
-const handlers = [dashboard];
+const handlers = [dashboard, orders];
 
 export { handlers };
