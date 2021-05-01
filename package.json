@@ -39,6 +39,10 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7",
     "eslint-plugin-prettier": "^3.4.0",
+    "msw": "^0.28.2",
     "prettier": "^2.2.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { dashboardPath } from 'routes/helpers';
+import { server } from 'mocks/server';
+
 import App from '../../App';
 
 const configRoute = () => {
@@ -7,6 +9,10 @@ const configRoute = () => {
 };
 
 describe('page Dashboard', () => {
+  beforeAll(() => server.listen());
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
+
   beforeEach(() => {
     configRoute();
   });
