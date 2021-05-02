@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { Suspense, FC } from 'react';
-import { Grommet, Grid, Box } from 'grommet';
+import { Grommet, Grid, Box, ThemeType } from 'grommet';
 
 import { Header } from 'components/Header';
 import { Sidebar } from 'components/Sidebar';
@@ -25,8 +25,25 @@ const MainWrapper = styled.div`
   position: relative;
 `;
 
+const theme: ThemeType = {
+  global: {
+    font: { family: 'sans-serif' },
+  },
+  button: {
+    size: {
+      small: {
+        border: { radius: '4px' },
+      },
+    },
+  },
+  accordion: {
+    icons: { color: 'white' },
+    border: { color: 'none' },
+  },
+};
+
 const Layout: FC = ({ children }) => (
-  <Grommet full theme={{ global: { font: { family: 'sans-serif' } } }}>
+  <Grommet full theme={theme}>
     <GlobalStyle />
     <MainWrapper>
       <Gradient />
@@ -49,7 +66,7 @@ const Layout: FC = ({ children }) => (
       >
         <Header />
         <Sidebar />
-        <Box gridArea='main' background='light-2'>
+        <Box gridArea='main'>
           <Suspense fallback={<p>loading...</p>}>{children}</Suspense>
         </Box>
       </Grid>

@@ -1,8 +1,10 @@
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
+import { Box, Button, Heading, Text } from 'grommet';
 
 import { ordersStatusPath } from 'routes/helpers';
+import { Container } from 'components/Container';
 
 import { BasicInformation } from './BasicInformation';
 import { OrderItems } from './OrderItems';
@@ -47,8 +49,8 @@ const initialValues = {
 const OrdersNew = () => {
   const history = useHistory();
   return (
-    <div>
-      <h1>OrdersNew</h1>
+    <Container>
+      <Heading size='small'>Pizza Order</Heading>
       <Formik
         validationSchema={schema}
         initialValues={initialValues}
@@ -73,18 +75,32 @@ const OrdersNew = () => {
       >
         {({ isSubmitting, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <BasicInformation />
-            <hr />
-            <OrderItems />
-            <hr />
-            <Summary />
-            <button type='submit' disabled={isSubmitting}>
-              Place Order
-            </button>
+            <Box gap='large'>
+              <BasicInformation />
+              <OrderItems />
+              <Summary />
+              <Box direction='row' align='center' justify='between'>
+                <Box></Box>
+                <Box>
+                  <Button
+                    type='submit'
+                    label={
+                      <Text color='#337BF6' size='small'>
+                        Place Order
+                      </Text>
+                    }
+                    color='#337BF6'
+                    size='small'
+                    disabled={isSubmitting}
+                    fill={false}
+                  />
+                </Box>
+              </Box>
+            </Box>
           </form>
         )}
       </Formik>
-    </div>
+    </Container>
   );
 };
 

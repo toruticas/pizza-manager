@@ -1,6 +1,25 @@
 import useSWR from 'swr';
+import styled from 'styled-components';
 import { useFormikContext } from 'formik';
+import { Box, Heading, Text } from 'grommet';
 import { FormValues } from 'types';
+
+const DottedLine = styled.p`
+  min-width: 600px;
+  background: inherit;
+  margin: 0 auto;
+  position: relative;
+  height: 16px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0.2rem;
+    width: 100%;
+    height: 0;
+    border-bottom: 2px dotted;
+  }
+`;
 
 const calculateTotal = (data: any, items: any) => {
   return items.reduce((total: number, item: any) => {
@@ -24,43 +43,59 @@ const Summary = () => {
   const { values } = useFormikContext<FormValues>();
 
   return (
-    <div>
-      <h1>Summary</h1>
+    <Box>
+      <Heading size='20px'>Summary</Heading>
 
       {values.items.map((item, index) => (
-        <div key={`item-${index}`}>
-          <p>
-            <strong>
-              {item.size} Pizza {index + 1}
-            </strong>
-            ..........
-            <strong>
-              GBP{' '}
-              {
-                data.sizes.find(
-                  (size: any) =>
-                    item.size.toLowerCase() === size.name.toLowerCase(),
-                ).price
-              }
-            </strong>
-          </p>
+        <Box key={`item-${index}`} pad={{ bottom: 'medium' }}>
+          <Box direction='row' justify='between' align='center'>
+            <Box>
+              <Text weight='bold'>
+                {item.size.replace(/^\w/, c => c.toUpperCase())} Pizza{' '}
+                {index + 1}
+              </Text>
+            </Box>
+            <Box>
+              <DottedLine />
+            </Box>
+            <Box>
+              <Text weight='bold'>
+                GBP{' '}
+                {
+                  data.sizes.find(
+                    (size: any) =>
+                      item.size.toLowerCase() === size.name.toLowerCase(),
+                  ).price
+                }
+              </Text>
+            </Box>
+          </Box>
           {item.toppings.map((topping: string) => (
-            <p key={topping}>
-              <span>{topping}</span>
-              ..........
-              <span>
+            <Box
+              direction='row'
+              justify='between'
+              key={topping}
+              pad={{ top: 'xsmall' }}
+            >
+              <Box pad={{ left: 'large' }}>{topping}</Box>
+              <Box>
                 {data.toppings.find((t: any) => topping === t.name).price}
-              </span>
-            </p>
+              </Box>
+            </Box>
           ))}
-        </div>
+        </Box>
       ))}
-      <hr />
-      <h1>
-        <span>Total</span>
-        <strong>GBP {calculateTotal(data, values.items)}</strong>
-      </h1>
-    </div>
+      <Box direction='row' justify='between' align='center'>
+        <Box>
+          <Heading size='small'>TOTAL</Heading>
+        </Box>
+        <Box>
+          <Heading size='small'>
+            GBP {calculateTotal(data, values.items)}
+          </Heading>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

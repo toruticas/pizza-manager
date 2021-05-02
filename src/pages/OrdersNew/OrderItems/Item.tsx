@@ -1,4 +1,5 @@
 import { FC, ChangeEvent } from 'react';
+import { AccordionPanel, Box, Button, Heading, Text } from 'grommet';
 
 const OrderItem: FC<{
   index: number;
@@ -17,42 +18,59 @@ const OrderItem: FC<{
   toppingList,
   remove,
 }) => (
-  <div key={`pizza-${index}`}>
-    <h2>{`Pizza ${index + 1}`}</h2>
-    <button type='button' onClick={() => remove(index)}>
-      Remove Pizza
-    </button>
-
-    <div key={index}>
-      <p>Choose size</p>
-      {sizeList.map(_size => (
-        <label key={_size}>
-          {_size}
-          <input
-            type='radio'
-            name={`items.${index}.size`}
-            value={_size}
-            checked={_size === size}
-            onChange={handleChange}
+  <AccordionPanel
+    label={
+      <Box direction='row' justify='between' align='center' fill>
+        <Box pad={{ left: 'medium' }}>
+          <Heading size='20px'>{`Pizza ${index + 1}`.toUpperCase()}</Heading>
+        </Box>
+        <Box>
+          <Button
+            as='div'
+            type='button'
+            onClick={() => remove(index)}
+            label={<Text size='small'>Remove Pizza</Text>}
+            color='#BF2828'
+            size='small'
           />
-        </label>
-      ))}
+        </Box>
+      </Box>
+    }
+  >
+    <Box background='white' pad='medium'>
+      <Box>
+        <Heading size='16px'>Choose size</Heading>
+        {sizeList.map(_size => (
+          <label key={_size}>
+            {_size}
+            <input
+              type='radio'
+              name={`items.${index}.size`}
+              value={_size}
+              checked={_size === size}
+              onChange={handleChange}
+            />
+          </label>
+        ))}
+      </Box>
 
-      <p>Pick your toppings</p>
-      {toppingList.map(topping => (
-        <label key={topping}>
-          {topping}
-          <input
-            type='checkbox'
-            name={`items.${index}.toppings`}
-            value={topping}
-            onChange={handleChange}
-            checked={toppings.includes(topping)}
-          />
-        </label>
-      ))}
-    </div>
-  </div>
+      <Box>
+        <Heading size='16px'>Pick your toppings</Heading>
+        {toppingList.map(topping => (
+          <label key={topping}>
+            {topping}
+            <input
+              type='checkbox'
+              name={`items.${index}.toppings`}
+              value={topping}
+              onChange={handleChange}
+              checked={toppings.includes(topping)}
+            />
+          </label>
+        ))}
+      </Box>
+    </Box>
+  </AccordionPanel>
 );
 
 export { OrderItem };
