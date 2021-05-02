@@ -1,3 +1,9 @@
+const home = {
+  key: 'home',
+  path: '/',
+  exact: true,
+};
+
 const dashboard = {
   key: 'dashboard',
   path: '/dashboard',
@@ -16,4 +22,4 @@ const ordersStatus = {
   exact: true,
 };
 
-export { dashboard, ordersNew, ordersStatus };
+export { home, dashboard, ordersNew, ordersStatus };

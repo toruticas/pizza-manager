@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 
+import { Layout } from 'components/Layout';
 import { Pages } from 'pages/Pages';
 
 function App() {
@@ -13,11 +13,11 @@ function App() {
         revalidateOnMount: false,
       }}
     >
-      <Suspense fallback={<p>loading...</p>}>
-        <Router>
+      <Router>
+        <Layout>
           <Pages />
-        </Router>
-      </Suspense>
+        </Layout>
+      </Router>
     </SWRConfig>
   );
 }

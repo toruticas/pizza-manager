@@ -2,9 +2,13 @@ import { Dashboard } from 'pages/Dashboard';
 import { OrdersNew } from 'pages/OrdersNew';
 import { OrdersStatus } from 'pages/OrdersStatus';
 
-import { dashboard, ordersNew, ordersStatus } from './base';
+import { home, dashboard, ordersNew, ordersStatus } from './base';
 
 const routes = [
+  {
+    ...home,
+    component: Dashboard,
+  },
   {
     ...dashboard,
     component: Dashboard,

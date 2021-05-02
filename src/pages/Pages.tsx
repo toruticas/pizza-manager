@@ -1,6 +1,5 @@
 import { Switch, Route } from 'react-router-dom';
 
-import { Dashboard } from './Dashboard';
 import { routes } from 'routes/mount';
 
 const Pages = () => (
@@ -13,9 +12,6 @@ const Pages = () => (
         component={route.component}
       />
     ))}
-    <Route path='/'>
-      <Dashboard />
-    </Route>
   </Switch>
 );
 
