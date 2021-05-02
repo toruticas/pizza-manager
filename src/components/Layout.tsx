@@ -11,7 +11,7 @@ const Gradient = styled.div`
   top: 0;
   left: 0;
   background-image: linear-gradient(#1d355b, #0a1321);
-  height: 800px;
+  height: 500px;
   width: 100vw;
 `;
 
@@ -39,6 +39,15 @@ const theme: ThemeType = {
   accordion: {
     icons: { color: 'white' },
     border: { color: 'none' },
+  },
+  table: {
+    header: { background: 'light-1' },
+    body: {
+      pad: {
+        horizontal: 'small',
+        vertical: 'xsmall',
+      },
+    },
   },
 };
 

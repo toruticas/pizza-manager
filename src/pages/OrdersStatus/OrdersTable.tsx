@@ -1,29 +1,57 @@
 import { FC } from 'react';
+import {
+  Box,
+  Table,
+  TableBody,
+  TableHeader,
+  TableRow,
+  TableCell,
+  Text,
+} from 'grommet';
 
 import { OrderItem } from './OrderItem';
 
 const OrdersTable: FC<{ data: any }> = ({ data }) => (
-  <table data-testid='orders-table'>
-    <thead>
-      <tr>
-        <th>Item ID</th>
-        <th>Address</th>
-        <th>Ordered Time</th>
-        <th>Status / Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {data.orders.map((order: any) => (
-        <OrderItem
-          key={order.id}
-          id={order.id}
-          address={order.address}
-          time={order.time}
-          status={order.status}
-        />
-      ))}
-    </tbody>
-  </table>
+  <Box pad={{ top: 'large' }}>
+    <Table data-testid='orders-table'>
+      <TableHeader>
+        <TableRow>
+          <TableCell>
+            <Text size='small' color='dark-5'>
+              Item ID
+            </Text>
+          </TableCell>
+          <TableCell>
+            <Text size='small' color='dark-5'>
+              Address
+            </Text>
+          </TableCell>
+          <TableCell>
+            <Text size='small' color='dark-5'>
+              Ordered Time
+            </Text>
+          </TableCell>
+          <TableCell>
+            <Text size='small' color='dark-5'>
+              Status / Action
+            </Text>
+          </TableCell>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {data.orders.map((order: any, index: number) => (
+          <OrderItem
+            key={order.id}
+            id={order.id}
+            address={order.address}
+            time={order.time}
+            status={order.status}
+            index={index}
+          />
+        ))}
+      </TableBody>
+    </Table>
+  </Box>
 );
 
 export { OrdersTable };

@@ -94,7 +94,7 @@ const Sidebar = () => {
       gridArea='sidebar'
       width='200px'
       pad={{
-        top: '100px',
+        top: '70px',
         right: '25px',
         bottom: '0px',
         left: '25px',
