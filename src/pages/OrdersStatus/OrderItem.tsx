@@ -14,7 +14,7 @@ const OrderItem: FC<{
     <td>{address}</td>
     <td>{time}</td>
     <td>
-      <Status status={status} />
+      <Status id={id} status={status} />
     </td>
   </tr>
 );

@@ -3,6 +3,8 @@ import {
   screen,
   getByText,
   getByTestId,
+  findByText,
+  fireEvent,
   waitFor,
 } from '@testing-library/react';
 import { ordersStatusPath } from 'routes/helpers';
@@ -35,7 +37,7 @@ describe('page OrdersStatus', () => {
 
   test('summary section', async () => {
     render(<App />);
-    const section = await waitFor(() => screen.getByTestId(/summary-section/i));
+    const section = await screen.findByTestId(/summary-section/i);
 
     await waitFor(() => {
       getByText(section, /Total items in inventory/i);
@@ -54,7 +56,7 @@ describe('page OrdersStatus', () => {
 
   test('table section', async () => {
     render(<App />);
-    const section = await waitFor(() => screen.getByTestId(/orders-table/i));
+    const section = await screen.findByTestId(/orders-table/i);
 
     await waitFor(() => {
       getByText(section, /Item Id/i);
@@ -80,5 +82,29 @@ describe('page OrdersStatus', () => {
 
     const canceledElement = getByTestId(section, /AB75233/i);
     getByText(canceledElement, /Cancelled/i);
+  });
+
+  test('accept action', async () => {
+    render(<App />);
+    const section = await screen.findByTestId(/orders-table/i);
+    const pendingElement = getByTestId(section, /AB75231/i);
+    fireEvent.click(getByText(pendingElement, /Accept/i));
+    await findByText(pendingElement, /Accepted/i);
+  });
+
+  test('mark as completed an accepted order', async () => {
+    render(<App />);
+    const section = await screen.findByTestId(/orders-table/i);
+    const pendingElement = getByTestId(section, /HF54D25/i);
+    fireEvent.click(getByText(pendingElement, /Mark as Completed/i));
+    await findByText(pendingElement, /In-Transit/i);
+  });
+
+  test('mark as completed an order in-transit', async () => {
+    render(<App />);
+    const section = await screen.findByTestId(/orders-table/i);
+    const pendingElement = getByTestId(section, /AB75232/i);
+    fireEvent.click(getByText(pendingElement, /Mark as Completed/i));
+    await findByText(pendingElement, /Completed/i);
   });
 });

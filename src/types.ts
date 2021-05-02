@@ -10,3 +10,13 @@ export interface FormValues {
   contact: string;
   items: Items[];
 }
+
+export interface Order {
+  id: string;
+  address: string;
+  time: string;
+  accepted: boolean;
+  transit: boolean;
+  completed: boolean;
+  canceled: boolean;
+}
