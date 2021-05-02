@@ -1,5 +1,6 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { ordersNewPath } from 'routes/helpers';
+import { server } from 'mocks/server';
 import App from 'App';
 
 const LARGE_TEXT =
@@ -10,6 +11,10 @@ const configRoute = () => {
 };
 
 describe('page OrdersNew/BasicInformation', () => {
+  beforeAll(() => server.listen());
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
+
   beforeEach(() => {
     configRoute();
   });

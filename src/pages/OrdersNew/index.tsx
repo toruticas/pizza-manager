@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 
 import { BasicInformation } from './BasicInformation';
 import { OrderItems } from './OrderItems';
+import { Summary } from './Summary';
 
 const schema = Yup.object({
   name: Yup.string()
@@ -59,6 +60,8 @@ const OrdersNew = () => {
             <BasicInformation />
             <hr />
             <OrderItems />
+            <hr />
+            <Summary />
             <button type='submit' disabled={isSubmitting}>
               Place Order
             </button>

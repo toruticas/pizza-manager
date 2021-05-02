@@ -1,9 +1,14 @@
+import useSWR from 'swr';
 import { FieldArray, useFormikContext } from 'formik';
 import { FormValues } from '../types';
 
 import { OrderItem } from './Item';
 
 const OrderItems = () => {
+  const { data } = useSWR('/api/prices');
+  const sizes = data.sizes.map((size: any) => size.name.toLowerCase());
+  const toppings = data.toppings.map((topping: any) => topping.name);
+
   const {
     values,
     errors,
@@ -20,7 +25,7 @@ const OrderItems = () => {
             type='button'
             onClick={() => push({ size: 'large', toppings: [] })}
           >
-            Add item
+            Add Pizza
           </button>
 
           {values.items.map((item, index) => (
@@ -30,6 +35,8 @@ const OrderItems = () => {
               handleChange={handleChange}
               size={item.size}
               toppings={item.toppings}
+              sizeList={sizes}
+              toppingList={toppings}
               remove={remove}
             />
           ))}

@@ -10,6 +10,7 @@ function App() {
       value={{
         suspense: true,
         dedupingInterval: 0,
+        revalidateOnMount: false,
       }}
     >
       <Suspense fallback={<p>loading...</p>}>
