@@ -1,16 +1,18 @@
 import { FC } from 'react';
 import { Box, Heading, Paragraph, Meter, Text } from 'grommet';
 
+import { Separator } from 'components/Separator';
+
 const Report: FC<{
   late: string;
   ontime: string;
   performance: string;
 }> = ({ late, ontime, performance }) => (
-  <Box width='auto' align='center'>
-    <Box>
+  <Box width='auto' align='center' style={{ borderLeft: '1px solid #EDEDED' }}>
+    <Box pad={{ bottom: 'medium' }}>
       <Paragraph>REPORT</Paragraph>
     </Box>
-    <Box direction='row' fill>
+    <Box direction='row' fill pad={{ left: 'medium' }}>
       <Box width='300px'>
         <Paragraph size='small'>Ontime Delivery</Paragraph>
         <Heading size='small' margin={{ top: '0' }}>
@@ -54,9 +56,10 @@ const Report: FC<{
       </Box>
     </Box>
 
-    <Box justify='between' fill>
-      <Box />
-      <Box>
+    <Separator />
+
+    <Box direction='row' justify='between' fill pad={{ left: 'medium' }}>
+      <Box fill>
         <Paragraph size='small' margin={{ bottom: '0' }}>
           Performance
         </Paragraph>
@@ -64,6 +67,7 @@ const Report: FC<{
           {performance}
         </Text>
       </Box>
+      <Box fill />
     </Box>
   </Box>
 );

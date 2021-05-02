@@ -22,7 +22,7 @@ const Dashboard = () => {
         <TotalSales currency={data.sales.currency} total={data.sales.total} />
       </Box>
 
-      <Box direction='row' justify='between'>
+      <Box direction='row' justify='between' pad={{ top: 'xlarge' }}>
         <OrderHistory data={data.history} />
         <Report
           late={data.report.late}
