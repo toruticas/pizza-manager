@@ -20,7 +20,7 @@ describe('page Dashboard', () => {
   test('delivery status section', async () => {
     render(<App />);
     await waitFor(() => {
-      screen.getByText(/Delivery Status/i);
+      screen.getByText(/DELIVERY STATUS/i);
       screen.getByText(/Total Orders/i);
       screen.getByText(/150/i);
 
@@ -35,9 +35,9 @@ describe('page Dashboard', () => {
   test('sales section', async () => {
     render(<App />);
     await waitFor(() => {
-      screen.getByText(/Total Sales/i);
+      screen.getByText(/TOTAL SALES/i);
       screen.getByText(/USD/i);
-      screen.getByText(/14543/i);
+      screen.getByText(/14,543/i);
     });
   });
 

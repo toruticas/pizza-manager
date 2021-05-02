@@ -1,4 +1,7 @@
 import useSWR from 'swr';
+import { Box } from 'grommet';
+
+import { Container } from 'components/Container';
 
 import { DeliveryStatus } from './DeliveryStatus';
 import { TotalSales } from './TotalSales';
@@ -9,25 +12,25 @@ const Dashboard = () => {
   const { data } = useSWR('/api/dashboard');
 
   return (
-    <div>
-      <div>
+    <Container>
+      <Box direction='row' justify='between' align='center'>
         <DeliveryStatus
           total={data.status.total}
           delivered={data.status.delivered}
           pending={data.status.pending}
         />
         <TotalSales currency={data.sales.currency} total={data.sales.total} />
-      </div>
+      </Box>
 
-      <div>
-        <OrderHistory />
+      <Box direction='row' justify='between'>
+        <OrderHistory data={data.history} />
         <Report
           late={data.report.late}
           ontime={data.report.ontime}
           performance={data.report.performance}
         />
-      </div>
-    </div>
+      </Box>
+    </Container>
   );
 };
 
