@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { FieldArray, useFormikContext } from 'formik';
-import { FormValues } from '../types';
+import { FormValues } from 'types';
 
 import { OrderItem } from './Item';
 

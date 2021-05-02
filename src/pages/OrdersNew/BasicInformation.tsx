@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useFormikContext } from 'formik';
 
-import { FormValues } from './types';
+import { FormValues } from 'types';
 
 const BasicInformation: FC = () => {
   const {

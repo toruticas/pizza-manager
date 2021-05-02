@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { useFormikContext } from 'formik';
-import { FormValues } from './types';
+import { FormValues } from 'types';
 
 const calculateTotal = (data: any, items: any) => {
   return items.reduce((total: number, item: any) => {
