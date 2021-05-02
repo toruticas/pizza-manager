@@ -31,4 +31,28 @@ describe('page OrdersNew/BasicInformation', () => {
     fireEvent.click(screen.queryAllByLabelText(/Pepperoni/i)[1]);
     await screen.findByText(/86/i);
   });
+
+  test('order creation', async () => {
+    render(<App />);
+    expect(await screen.findByText(/Summary/i)).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText(/Name/i), {
+      target: { value: 'Rafael Silva' },
+    });
+    fireEvent.change(screen.getByLabelText(/E-mail Address/i), {
+      target: { value: 'toruticas@gmail.com' },
+    });
+    fireEvent.change(screen.queryAllByLabelText(/Address/i)[1], {
+      target: { value: 'Lorem Ipsum Street, 1' },
+    });
+    fireEvent.change(screen.getByLabelText(/Contact Number/i), {
+      target: { value: '+55 (11) 11111-1111' },
+    });
+    fireEvent.click(screen.getByLabelText(/Bacon/i));
+    await screen.findByText(/43.5/i);
+
+    fireEvent.click(screen.getByText(/Place Order/i));
+
+    await screen.findByText(/Order Management/i);
+    expect(window.location.pathname).toBe('/orders/status');
+  });
 });

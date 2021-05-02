@@ -1,5 +1,8 @@
 import { Formik } from 'formik';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
+
+import { ordersStatusPath } from 'routes/helpers';
 
 import { BasicInformation } from './BasicInformation';
 import { OrderItems } from './OrderItems';
@@ -42,17 +45,30 @@ const initialValues = {
 };
 
 const OrdersNew = () => {
+  const history = useHistory();
   return (
     <div>
       <h1>OrdersNew</h1>
       <Formik
         validationSchema={schema}
         initialValues={initialValues}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            console.log(values);
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            const response = await fetch('/api/orders/add', {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(values),
+            });
+            await response.json();
+          } catch (e: unknown) {
+            console.error(e);
+            /* handle error */
+          }
+          setSubmitting(false);
+          history.push(ordersStatusPath());
         }}
       >
         {({ isSubmitting, handleSubmit }) => (
