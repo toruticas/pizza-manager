@@ -1,6 +1,9 @@
 import { FC, ChangeEvent } from 'react';
 import { AccordionPanel, Box, Button, Heading, Text } from 'grommet';
 
+import { PickToppings } from './PickToppings';
+import { SelectSize } from './SelectSize';
+
 const OrderItem: FC<{
   index: number;
   size: string;
@@ -38,37 +41,18 @@ const OrderItem: FC<{
     }
   >
     <Box background='white' pad='medium'>
-      <Box>
-        <Heading size='16px'>Choose size</Heading>
-        {sizeList.map(_size => (
-          <label key={_size}>
-            {_size}
-            <input
-              type='radio'
-              name={`items.${index}.size`}
-              value={_size}
-              checked={_size === size}
-              onChange={handleChange}
-            />
-          </label>
-        ))}
-      </Box>
-
-      <Box>
-        <Heading size='16px'>Pick your toppings</Heading>
-        {toppingList.map(topping => (
-          <label key={topping}>
-            {topping}
-            <input
-              type='checkbox'
-              name={`items.${index}.toppings`}
-              value={topping}
-              onChange={handleChange}
-              checked={toppings.includes(topping)}
-            />
-          </label>
-        ))}
-      </Box>
+      <SelectSize
+        index={index}
+        sizeList={sizeList}
+        size={size}
+        handleChange={handleChange}
+      />
+      <PickToppings
+        index={index}
+        toppingList={toppingList}
+        toppings={toppings}
+        handleChange={handleChange}
+      />
     </Box>
   </AccordionPanel>
 );

@@ -49,6 +49,10 @@ const theme: ThemeType = {
       },
     },
   },
+  checkBox: {
+    color: 'white',
+    toggle: { color: 'white', background: 'color' },
+  },
 };
 
 const Layout: FC = ({ children }) => (
