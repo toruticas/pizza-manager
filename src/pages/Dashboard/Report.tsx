@@ -18,7 +18,7 @@ const Report: FC<{
         <Heading size='small' margin={{ top: '0' }}>
           {ontime}
         </Heading>
-        <Box width='120px'>
+        <Box width='120px' height='20px'>
           <Meter
             thickness='xsmall'
             values={[
