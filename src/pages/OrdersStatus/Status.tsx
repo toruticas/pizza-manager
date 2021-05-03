@@ -33,13 +33,13 @@ const Status: FC<{ id: string; status: StatusOptions }> = ({ id, status }) => {
     case StatusOptions.Accepted:
       return (
         <>
-          <Text size='small'>Accepted</Text>
+          <Text size='medium'>Accepted</Text>
           <Button
             onClick={() => updateStatus('transit')}
             margin={{ left: 'large' }}
           >
             <Text
-              size='small'
+              size='medium'
               color='#337BF6'
               style={{ textDecoration: 'underline' }}
             >
@@ -51,13 +51,13 @@ const Status: FC<{ id: string; status: StatusOptions }> = ({ id, status }) => {
     case StatusOptions.Transit:
       return (
         <>
-          <Text size='small'>In-Transit</Text>
+          <Text size='medium'>In-Transit</Text>
           <Button
             onClick={() => updateStatus('completed')}
             margin={{ left: 'large' }}
           >
             <Text
-              size='small'
+              size='medium'
               color='#337BF6'
               style={{ textDecoration: 'underline' }}
             >
@@ -67,10 +67,10 @@ const Status: FC<{ id: string; status: StatusOptions }> = ({ id, status }) => {
         </>
       );
     case StatusOptions.Completed:
-      return <Text size='small'> Completed</Text>;
+      return <Text size='medium'> Completed</Text>;
     case StatusOptions.Canceled:
       return (
-        <Text size='small' color='#EA3359'>
+        <Text size='medium' color='#EA3359'>
           Cancelled
         </Text>
       );
@@ -83,7 +83,7 @@ const Status: FC<{ id: string; status: StatusOptions }> = ({ id, status }) => {
             margin={{ right: 'small' }}
           >
             <Text
-              size='small'
+              size='medium'
               color='#55A64E'
               style={{ textDecoration: 'underline' }}
             >
@@ -94,7 +94,7 @@ const Status: FC<{ id: string; status: StatusOptions }> = ({ id, status }) => {
             onClick={() => updateStatus('canceled')}
             style={{ textDecoration: 'underline' }}
           >
-            <Text size='small' color='#EA3359'>
+            <Text size='medium' color='#EA3359'>
               Cancel
             </Text>
           </Button>

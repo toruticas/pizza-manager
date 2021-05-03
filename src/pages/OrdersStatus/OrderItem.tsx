@@ -16,13 +16,13 @@ const OrderItem: FC<{
     style={{ backgroundColor: index % 2 === 1 ? '#F8F8F8' : 'white' }}
   >
     <TableCell>
-      <Text size='small'>{id}</Text>
+      <Text size='medium'>{id}</Text>
     </TableCell>
     <TableCell>
-      <Text size='small'>{address}</Text>
+      <Text size='medium'>{address}</Text>
     </TableCell>
     <TableCell>
-      <Text size='small'>{time}</Text>
+      <Text size='medium'>{time}</Text>
     </TableCell>
     <TableCell>
       <Status id={id} status={status} />

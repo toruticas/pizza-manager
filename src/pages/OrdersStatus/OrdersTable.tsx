@@ -17,22 +17,22 @@ const OrdersTable: FC<{ data: any }> = ({ data }) => (
       <TableHeader>
         <TableRow>
           <TableCell>
-            <Text size='small' color='dark-5'>
+            <Text size='medium' color='dark-5'>
               Item ID
             </Text>
           </TableCell>
           <TableCell>
-            <Text size='small' color='dark-5'>
+            <Text size='medium' color='dark-5'>
               Address
             </Text>
           </TableCell>
           <TableCell>
-            <Text size='small' color='dark-5'>
+            <Text size='medium' color='dark-5'>
               Ordered Time
             </Text>
           </TableCell>
           <TableCell>
-            <Text size='small' color='dark-5'>
+            <Text size='medium' color='dark-5'>
               Status / Action
             </Text>
           </TableCell>
